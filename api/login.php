@@ -3,15 +3,15 @@
 	$response = array();
 	$success = 0;
 	$message = 'Access denied';
-	$checkApi = false;
-	$headers = apache_request_headers();
-	foreach ($headers as $header => $value) {
-		if($header == 'Authorization' && $value == '2d30ff242f8650954bfe8c993f084f4f'){
-			$checkApi = true;
-			break;
-		}
-	}
-	if($checkApi){
+	//$checkApi = false;
+	// $headers = apache_request_headers();
+	// foreach ($headers as $header => $value) {
+	// 	if($header == 'Authorization' && $value == '2d30ff242f8650954bfe8c993f084f4f'){
+	// 		$checkApi = true;
+	// 		break;
+	// 	}
+	// }
+	if($_SERVER["Authorization"] == '2d30ff242f8650954bfe8c993f084f4f'){
 		if(isset($_POST['username']) && isset($_POST['password'])){
 			$username = $_POST['username'];
 			$password = $_POST['password'];
@@ -42,5 +42,6 @@
 	}
 	$response['success'] = $success;
 	$response['message'] = $message;
-	echo json_encode($response, JSON_UNESCAPED_UNICODE);
+	//echo json_encode($response, JSON_UNESCAPED_UNICODE);
+	echo json_encode($response, 256);
 ?>
