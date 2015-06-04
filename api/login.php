@@ -3,15 +3,12 @@
 	$response = array();
 	$success = 0;
 	$message = 'Access denied';
-	//$checkApi = false;
-	// $headers = apache_request_headers();
-	// foreach ($headers as $header => $value) {
-	// 	if($header == 'Authorization' && $value == '2d30ff242f8650954bfe8c993f084f4f'){
-	// 		$checkApi = true;
-	// 		break;
-	// 	}
-	// }
-	if(isset($_SERVER["Authorization"]) && $_SERVER["Authorization"] == '2d30ff242f8650954bfe8c993f084f4f'){
+	$checkApi = false;
+	if(function_exists('apache_request_headers')){
+		if(apache_request_headers()['Authorization'] == '2d30ff242f8650954bfe8c993f084f4f')
+			$checkApi = true;
+	}
+	if(isset($_SERVER["Authorization"]) && $_SERVER["Authorization"] == '2d30ff242f8650954bfe8c993f084f4f'  || $checkApi){
 		if(isset($_POST['username']) && isset($_POST['password'])){
 			$username = $_POST['username'];
 			$password = $_POST['password'];

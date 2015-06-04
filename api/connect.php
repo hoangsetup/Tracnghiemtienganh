@@ -80,7 +80,7 @@
 		return $result;
 	}
 
-	function insertToTable($insertState = null){
+	function queryToTable($insertState = null){
 		global $con;
 		$result = mysqli_query($con, $insertState);
 		return $result;
