@@ -11,7 +11,7 @@
 	// 		break;
 	// 	}
 	// }
-	if($_SERVER["Authorization"] == '2d30ff242f8650954bfe8c993f084f4f'){
+	if(isset($_SERVER["Authorization"]) && $_SERVER["Authorization"] == '2d30ff242f8650954bfe8c993f084f4f'){
 		if(isset($_POST['username']) && isset($_POST['password'])){
 			$username = $_POST['username'];
 			$password = $_POST['password'];
