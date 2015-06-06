@@ -1,14 +1,18 @@
-<div class="well well-lg">
-	<form action="" method="POST" role="form">
-		<legend>Login</legend>
-		<div class="form-group">
-			<input type="text" name="name" value="<?php echo isset($_SESSION["name"])? $_SESSION["name"] : ''; ?>" class="form-control" id="" placeholder="User name">
+<div class="row">
+	<div class="col-sm-offset-3 col-sm-6">
+		<div class="well well-lg" style="margin-top: 50px;">
+			<form action="" method="POST" role="form">
+				<legend>Thông tin đăng nhập</legend>
+				<div class="form-group">
+					<input type="text" name="name" value="<?php echo isset($_SESSION["name"])? $_SESSION["name"] : ''; ?>" class="form-control" id="" placeholder="Tên đăng nhập">
+				</div>
+				<div class="form-group">
+					<input type="password" value="<?php echo isset($_SESSION["pass"])? $_SESSION["pass"] : ''; ?>" name="pass" class="form-control" id="" placeholder="Mật khẩu">
+				</div>
+				<button type="submit" name="login-submit" class="btn btn-primary">Đăng nhập</button>
+			</form>
 		</div>
-		<div class="form-group">
-			<input type="password" value="<?php echo isset($_SESSION["pass"])? $_SESSION["pass"] : ''; ?>" name="pass" class="form-control" id="" placeholder="Password">
-		</div>
-		<button type="submit" name="login-submit" class="btn btn-primary">Submit</button>
-	</form>
+	</div>
 </div>
 <?php
 	if( isset($_POST["login-submit"]) ){

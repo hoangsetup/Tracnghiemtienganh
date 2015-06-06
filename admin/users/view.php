@@ -24,7 +24,7 @@
 	?>
 	</td>
 	<td class="col-action">
-		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Xem chi tiết/Sửa</a>
+		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Xem/Sửa</a>
 		<?php
 			echo '<a class="label label-info" href="#" data-toggle="modal" data-target="#myModal-'.$row["PK_iUserId"].'">Kết quả thi</a>';
 		?>
@@ -43,19 +43,19 @@
 						<option value="2" <?php echo $row["iPermission"] == 2 ? 'selected' : ''; ?>>Người học</option>
 					</select>
 					<br>
-					<label for="suser">Tên đăng nhập</label><input type="text" name="suser" value="<?php echo $row["sUser"]; ?>" placeholder="Tên đăng nhập" class="form-control" required>
+					<label for="suser">Tên đăng nhập</label><input type="text" name="suser" value="<?php echo $row["sUser"]; ?>" class="form-control" required>
 					<br>
-					<label for="sname">Tên hiển thị</label><input type="text" name="sname" value="<?php echo $row["sName"]; ?>" placeholder="Tên hiển thị" class="form-control" required>
+					<label for="sname">Tên hiển thị</label><input type="text" name="sname" value="<?php echo $row["sName"]; ?>" class="form-control" required>
 					<br>
-					<label for="spass">Mật khẩu</label><input type="text" name="spass" value="<?php echo $row["sPassword"]; ?>" placeholder="Mật khẩu" class="form-control" required>
+					<label for="spass">Mật khẩu</label><input type="text" name="spass" value="<?php echo $row["sPassword"]; ?>" class="form-control" required>
 					<br>
 				</div>
 				<div class="col-sm-6 col-xs-12">
-					<label for="sdob">Ngày sinh</label><input type="text" name="sdob" value="<?php echo $row["sNgaysinh"]; ?>" placeholder="Ngày sinh" class="form-control" required>
+					<label for="sdob">Ngày sinh</label><input type="text" name="sdob" value="<?php echo $row["sNgaysinh"]; ?>" class="form-control" required>
 					<br>
-					<label for="smail">Email</label><input type="text" name="smail" value="<?php echo $row["sEmail"]; ?>" placeholder="Email" class="form-control" required>
+					<label for="smail">Email</label><input type="text" name="smail" value="<?php echo $row["sEmail"]; ?>" class="form-control" required>
 					<br>
-					<label for="sphone">Số điện thoại</label><input type="text" name="sphone" value="<?php echo $row["sSdt"]; ?>" placeholder="Email" class="form-control" required>
+					<label for="sphone">Số điện thoại</label><input type="text" name="sphone" value="<?php echo $row["sSdt"]; ?>" class="form-control" required>
 					<br>
 					<div class="row">
 						<div class="col-sm-3 col-xs-12">

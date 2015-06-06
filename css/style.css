@@ -22,3 +22,7 @@ ul.result-report li {
 ul.result-report li span {
   display: table-cell;
 }
+
+body.login-form {
+  background-color: #333;
+}

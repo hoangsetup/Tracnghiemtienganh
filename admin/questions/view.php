@@ -28,7 +28,7 @@
 	?>
 	</td>
 	<td class="col-action">
-		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["id"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["id"]; ?>">Sửa</a>
+		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["id"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["id"]; ?>">Xem/Sửa</a>
 		<a onclick="return confirm('Bạn có chắc chắn xóa?')" href="?action=delete&q=<?php echo $row["id"] ?>" class="label label-danger">Xóa</a>
 	</td>
 </tr>

@@ -5,20 +5,20 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Trac Nghiem Tieng Anh - Admin Panel</title>
 	<!-- Latest compiled and minified CSS & JS -->
-	<link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" media="screen" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/style.css">
-	<script src="//code.jquery.com/jquery.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </head>
-<body>
-	<?php
-		session_start(); 
-		$login = false;
-		if( isset( $_SESSION["login"] ) ){
-			$login = true;
-		}
-	?>
+<?php
+	session_start(); 
+	$login = false;
+	if( isset( $_SESSION["login"] ) ){
+		$login = true;
+	}
+?>
+<body class="<?php echo $login == false? 'login-form' : ''; ?>">
 	<div class="container">
 		
 	<?php
@@ -28,7 +28,7 @@
 		<nav>
 			<p class="head-user-meta">
 				Xin chào, <?php echo $_SESSION["user_name"]; ?>
-				<a class="label label-danger" onclick="return confirm('About to Log out?')" href="includes/logout.php">Thoát</a>
+				<a class="label label-danger" onclick="return confirm('Đăng xuất?')" href="includes/logout.php">Thoát</a>
 			</p>
 	<?php
 			// if( $_SESSION["user_role"] == '1' ){

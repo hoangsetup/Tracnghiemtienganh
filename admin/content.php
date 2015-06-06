@@ -1,5 +1,5 @@
 <?php
-include('core/connect.php');
+include('../api/connect.php');
 if( isset($_SESSION["login"]) ){
 	if( isset($_SESSION["user_role"]) ){
 		switch ($_SESSION["user_role"]) {
