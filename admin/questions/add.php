@@ -108,7 +108,7 @@
 		    mysqli_query($con, $query_b);
 		    mysqli_query($con, $query_c);
 		    mysqli_query($con, $query_d);
-		    echo '<a class="label label-success" href="index.php?page=questions">Đã thêm 1 câu hỏi.</a>';
+		    echo '<a class="label label-success" href="index.php?page=questions"><i class="fa fa-spinner fa-pulse"></i> Đã thêm 1 câu hỏi.</a>';
 		    unset($_POST["submit-add-question"]);
 		} else {
 		    echo '<span class="label label-danger">Lỗi, không thêm được câu hỏi.</span>';

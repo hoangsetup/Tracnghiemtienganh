@@ -34,7 +34,7 @@
 </tr>
 <tr class="collapse out" id="editQuestion-<?php echo $row["id"]; ?>">
 	<form action="" method="POST" role="form">		
-		<td>
+		<td colspan="2">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
 					<legend>Nội dung câu hỏi</legend>
@@ -77,8 +77,6 @@
 					?>
 				</div>
 			</div>
-		</td>
-		<td class="col-action">
 			<div class="row">
 				<div class="col-sm-12">
 					<button type="submit" name="submit-edit-question" value="<?php echo $row["id"]; ?>" class="btn btn-success">Xong</button>
@@ -143,7 +141,7 @@
 		    mysqli_query($con, $query_b);
 		    mysqli_query($con, $query_c);
 		    mysqli_query($con, $query_d);
-		    echo '<span class="label label-success"><a href="index.php?page=questions">Đã sửa 1 câu hỏi.</a></span>';
+		    echo '<span class="label label-success"><a href="index.php?page=questions"><i class="fa fa-spinner fa-pulse"></i> Đã sửa 1 câu hỏi.</a></span>';
 		    unset($_POST["submit-edit-question"]);
 		} else {
 		    echo '<span class="label label-danger">Lỗi, không sửa được câu hỏi.</span>';

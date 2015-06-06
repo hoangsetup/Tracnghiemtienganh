@@ -1,6 +1,8 @@
 /* QUESSTIONS */
 table.questions th.head-action,
-table.questions .col-action {
+table.questions .col-action,
+table.users th.head-action,
+table.users .col-action {
   max-width: 30%;
   text-align: right;
 }

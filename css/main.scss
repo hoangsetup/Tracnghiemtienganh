@@ -2,7 +2,8 @@
 @import "utils/mixin";
 /* QUESSTIONS */
 
-table.questions{
+table.questions,
+table.users{
 	th.head-action,
 	.col-action{
 		max-width: 30%;

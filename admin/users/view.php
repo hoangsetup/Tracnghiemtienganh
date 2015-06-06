@@ -8,20 +8,53 @@
 <tr>
 	<td><?php echo substr($row["sUser"], 0, 250); ?></td>
 	<td><?php echo substr($row["sName"], 0, 250); ?></td>
-	<td><?php echo substr($row["iPermission"], 0, 250); ?></td>
+	<td>
+	<?php
+		switch ($row["iPermission"]) {
+		 	case '0':
+		 		echo '<span class="label label-danger">Quản trị viên</span>';
+		 		break;
+		 	case '1':
+		 		echo '<span class="label label-warning">Giáo viên</span>';
+		 		break;
+		 	case '2':
+		 		echo '<span class="label label-success">Người học</span>';
+		 		break;
+		 } 
+	?>
+	</td>
 	<td class="col-action">
-		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Sửa</a>
+		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Xem chi tiết/Sửa</a>
 		<a onclick="return confirm('Bạn có chắc chắn xóa?')" href="?action=delete&u=<?php echo $row["PK_iUserId"] ?>" class="label label-danger">Xóa</a>
 	</td>
 </tr>
-<tr class="collapse out" id="editQuestion-<?php $row["PK_iUserId"]; ?>">
+<tr class="collapse out" id="editQuestion-<?php echo $row["PK_iUserId"]; ?>">
 	<form action="" method="POST" role="form">		
-		<td>
+		<td colspan="4">
 			<div class="row">
-				
+				<div class="col-sm-6 col-xs-12">
+					<label for="srole">Quyền</label>
+					<select name="srole" id="" class="form-control" required>
+						<option value="0" <?php echo $row["iPermission"] == 0 ? 'selected' : ''; ?>>Quản trị viên</option>
+						<option value="1" <?php echo $row["iPermission"] == 1 ? 'selected' : ''; ?>>Giáo viên</option>
+						<option value="2" <?php echo $row["iPermission"] == 2 ? 'selected' : ''; ?>>Người học</option>
+					</select>
+					<br>
+					<label for="suser">Tên đăng nhập</label><input type="text" name="suser" value="<?php echo $row["sUser"]; ?>" placeholder="Tên đăng nhập" class="form-control" required>
+					<br>
+					<label for="sname">Tên hiển thị</label><input type="text" name="sname" value="<?php echo $row["sName"]; ?>" placeholder="Tên hiển thị" class="form-control" required>
+					<br>
+					<label for="spass">Mật khẩu</label><input type="text" name="spass" value="<?php echo $row["sPassword"]; ?>" placeholder="Mật khẩu" class="form-control" required>
+					<br>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<label for="sdob">Ngày sinh</label><input type="text" name="sdob" value="<?php echo $row["sNgaysinh"]; ?>" placeholder="Ngày sinh" class="form-control">
+					<br>
+					<label for="smail">Email</label><input type="text" name="sdob" value="<?php echo $row["sEmail"]; ?>" placeholder="Email" class="form-control">
+					<br>
+					<label for="sphone">Số điện thoại</label><input type="text" name="sphone" value="<?php echo $row["sSdt"]; ?>" placeholder="Email" class="form-control">
+				</div>
 			</div>
-		</td>
-		<td class="col-action">
 			<div class="row">
 				<div class="col-sm-12">
 					<button type="submit" name="submit-edit-question" value="<?php echo $row["PK_iUserId"]; ?>" class="btn btn-success">Xong</button>
@@ -47,46 +80,16 @@
 	*Updating
 	*/
 	if( isset($_POST["submit-edit-question"]) ){
-		$content = mysqli_real_escape_string($con, $_POST["q_content"]);
-		$A_1 = mysqli_real_escape_string($con, '0');
-		$A_2 = mysqli_real_escape_string($con, $_POST["a"]);
-		$B_1 = mysqli_real_escape_string($con, '0');
-		$B_2 = mysqli_real_escape_string($con, $_POST["b"]);
-		$C_1 = mysqli_real_escape_string($con, '0');
-		$C_2 = mysqli_real_escape_string($con, $_POST["c"]);
-		$D_1 = mysqli_real_escape_string($con, '0');
-		$D_2 = mysqli_real_escape_string($con, $_POST["d"]);
-		switch ($_POST["da"]) {
-			case '1':
-				$A_1 = '1';
-				break;
-			case '2':
-				$B_1 = '1'; 
-				break;
-			case '3':
-				$C_1 = '1';
-				break;
-			case '4':
-				$D_1 = '1';
-				break;
-			default:
-				break;
-		}
-		$query_update = sprintf("UPDATE cauhoi SET noidung='%s', loaicauhoi='%s' WHERE id='%s'",$content, $_POST["cate"],$_POST["id-question"]);
+		$srole = mysqli_real_escape_string($con, $_POST["srole"]);
+		$suser = mysqli_real_escape_string($con, $_POST["suser"]);
+		$sname = mysqli_real_escape_string($con, $_POST["sname"]);
+		$spass = mysqli_real_escape_string($con, $_POST["spass"]);
+		$query_update = sprintf("UPDATE users SET iPermission='%s', sUser='%s', sName='%s', sPassword='%s' WHERE PK_iUserId='%s'",$srole, $suser, $sname, $spass,$_POST["submit-edit-question"]);
 		if (mysqli_query($con, $query_update)) {
-		    // $query_a = sprintf("INSERT INTO dapan (cauhoiid, dadung, noidung) VALUES ('%s', '%s', '%s')",$last_id, $A_1, $A_2);
-		    $query_a = sprintf("UPDATE dapan SET dadung='%s', noidung='%s' WHERE id='%s'",$A_1, $A_2, $_POST["id-a"]);
-		    $query_b = sprintf("UPDATE dapan SET dadung='%s', noidung='%s' WHERE id='%s'",$B_1, $B_2, $_POST["id-b"]);
-		    $query_c = sprintf("UPDATE dapan SET dadung='%s', noidung='%s' WHERE id='%s'",$C_1, $C_2, $_POST["id-c"]);
-		    $query_d = sprintf("UPDATE dapan SET dadung='%s', noidung='%s' WHERE id='%s'",$D_1, $D_2, $_POST["id-d"]);
-		    mysqli_query($con, $query_a);
-		    mysqli_query($con, $query_b);
-		    mysqli_query($con, $query_c);
-		    mysqli_query($con, $query_d);
-		    echo '<span class="label label-success"><a href="index.php?page=questions">Đã sửa 1 câu hỏi.</a></span>';
+		    echo '<span class="label label-success"><a href="index.php"><i class="fa fa-spinner fa-pulse"></i> Đã sửa 1 thành viên.</a></span>';
 		    unset($_POST["submit-edit-question"]);
 		} else {
-		    echo '<span class="label label-danger">Lỗi, không sửa được câu hỏi.</span>';
+		    echo '<span class="label label-danger">Lỗi, không sửa được thành viên.</span>';
 		}
 	}
 ?>
