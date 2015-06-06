@@ -20,8 +20,8 @@
 		  	<table class="table table-hover">
 		  		<thead>
 		  			<tr>
-		  				<th>Nội dung</th>
-		  				<th>Hành động</th>
+		  				<th class="head-content">Nội dung</th>
+		  				<th class="head-action">Hành động</th>
 		  			</tr>
 		  		</thead>
 		  		<tbody>

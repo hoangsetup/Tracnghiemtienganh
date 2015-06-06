@@ -13,8 +13,8 @@
 				<div class="col-xs-12 col-sm-6">
 					<legend>Nội dung câu hỏi</legend>
 					<div class="form-group">
-						<select name="cate" id="" class="form-control">
-							<option value="0">Thể loại</option>
+						<select name="cate" id="" class="form-control" required>
+							<option value="" disabled selected>Thể loại</option>
 							<option value="1">Từ vựng</option>
 							<option value="2">Ngữ pháp</option>
 							<option value="3">Phát âm</option>
@@ -31,7 +31,7 @@
 					<br>
 					<div class="input-group">
 				      	<span class="input-group-addon">
-				        	<input name="da" type="radio" value="1" aria-label="...">
+				        	<input name="da" type="radio" required value="1" aria-label="...">
 				      	</span>
 				      	<input required="required" name="a" type="text" placeholder="Đáp án A" class="form-control" aria-label="...">
 				    </div><!-- /A -->
@@ -61,6 +61,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<button type="submit" name="submit-add-question" class="btn btn-success">Thêm</button>
+					<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#addnewQuestion" aria-expanded="false" aria-controls="addnewQuestion">Hủy</button>
 				</div>
 			</div>
 			<!-- /Submit -->
