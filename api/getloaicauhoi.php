@@ -4,10 +4,10 @@
 	$success = 0;
 	$message = 'Access denied';
 	$checkApi = false;
-	if(function_exists('apache_request_headers')){
-		if(apache_request_headers()['Authorization'] == '2d30ff242f8650954bfe8c993f084f4f')
-			$checkApi = true;
-	}
+	// if(function_exists('apache_request_headers')){
+	// 	if(apache_request_headers()['Authorization'] == '2d30ff242f8650954bfe8c993f084f4f')
+	// 		$checkApi = true;
+	// }
 	if(isset($_SERVER["Authorization"]) && $_SERVER["Authorization"] == '2d30ff242f8650954bfe8c993f084f4f'  || $checkApi){
 		$result = selectAll('loaicauhoi');
 		$response['loaicauhoi'] = array();
