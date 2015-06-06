@@ -10,3 +10,15 @@ table.users .col-action {
 .head-user-meta {
   text-align: right;
 }
+
+ul.result-report {
+  list-style: none;
+  display: table;
+  width: 100%;
+}
+ul.result-report li {
+  display: table-row;
+}
+ul.result-report li span {
+  display: table-cell;
+}

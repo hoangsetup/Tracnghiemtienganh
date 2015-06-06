@@ -13,3 +13,14 @@ table.users{
 .head-user-meta{
 	text-align: right;
 }
+ul.result-report{
+	list-style: none;
+	display: table;
+	width: 100%;
+	li{
+		display: table-row;
+		span{
+			display: table-cell;
+		}
+	}
+}

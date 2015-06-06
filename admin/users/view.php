@@ -24,6 +24,11 @@
 	?>
 	</td>
 	<td class="col-action">
+		<?php
+			if( $row['iPermission'] == 2 ){//Learner
+				echo '<a class="label label-info" href="#" data-toggle="modal" data-target="#myModal-'.$row["PK_iUserId"].'">Kết quả thi</a>';
+			} 
+		?>
 		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Xem chi tiết/Sửa</a>
 		<a onclick="return confirm('Bạn có chắc chắn xóa?')" href="?action=delete&u=<?php echo $row["PK_iUserId"] ?>" class="label label-danger">Xóa</a>
 	</td>
@@ -64,35 +69,62 @@
 		</td>
 	</form>
 </tr>
-<?php
-	/**
-	* Deleting a user with its answers
-	*/
-	if( isset($_GET['action']) && $_GET["action"] == 'delete' ){
-		$query_delete = "DELETE FROM users WHERE PK_iUserId = ".$_GET['u'];
-		if (mysqli_query($con, $query_delete)) {
-			$query_delete = "DELETE FROM ketqua WHERE userid=".$_GET['u'];
-			if (mysqli_query($con, $query_delete)) {
-				redirect('index.php');
-			}
-		}else{
-			echo '<span class="label label-danger">Lỗi khi xóa</span>';
-		}
-	} 
-	/**
-	*Updating
-	*/
-	if( isset($_POST["submit-edit-question"]) ){
-		$srole = mysqli_real_escape_string($con, $_POST["srole"]);
-		$suser = mysqli_real_escape_string($con, $_POST["suser"]);
-		$sname = mysqli_real_escape_string($con, $_POST["sname"]);
-		$spass = mysqli_real_escape_string($con, $_POST["spass"]);
-		$query_update = sprintf("UPDATE users SET iPermission='%s', sUser='%s', sName='%s', sPassword='%s' WHERE PK_iUserId='%s'",$srole, $suser, $sname, $spass,$_POST["submit-edit-question"]);
-		if (mysqli_query($con, $query_update)) {
-		    echo '<span class="label label-success"><a href="index.php"><i class="fa fa-spinner fa-pulse"></i> Đã sửa 1 thành viên.</a></span>';
-		    unset($_POST["submit-edit-question"]);
-		} else {
-		    echo '<span class="label label-danger">Lỗi, không sửa được thành viên.</span>';
-		}
-	}
-?>
+<!-- Modal -->
+<div class="modal fade" id="myModal-<?php echo $row["PK_iUserId"]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        	<h4 class="modal-title" id="myModalLabel"><?php echo $row["sName"]; ?></h4>
+      	</div>
+      	<div class="modal-body">
+	       <ul class="result-report">
+	       		<li>
+	       			<span><strong>THỜI GIAN</strong></span>
+	       			<span><strong>KẾT QUẢ</strong></span>
+	       			<span><strong>THÀNH TÍCH</strong></span>
+	       		</li>
+	    		 <?php
+		        	$query_result = "SELECT * FROM ketqua WHERE userid=".$row['PK_iUserId'];
+		        	$result_result = mysqli_query( $con,$query_result );
+		        	while( $row_r=mysqli_fetch_array($result_result) ){
+		        ?>
+						<li>
+			       			<span>
+			       				<?php echo $row_r["thoigian"]; ?>
+			       			</span>
+			       			<span>
+			       				<?php
+			       					$expression = $row_r["ketqua"];	
+			       					echo $expression; 
+			       				?>
+			       			</span>
+			       			<span>
+			       				<?php 
+			       					$t = explode("/", $expression);
+			       					$t = $t[0]/$t[1];
+			       					if( $t < 0.5 ):
+			       				?>
+				  	       				<div class="progress" style="margin-bottom: 0;">
+				  					  		<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $t*100; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $t*100; ?>%">
+				  					    	<?php echo $t*100; ?>% failed
+				  					  	</div>
+								<?php else: ?>
+					       				<div class="progress" style="margin-bottom: 0;">
+									  		<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $t*100; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $t*100; ?>%">
+									    	<?php echo $t*100; ?>% pass
+									  	</div>
+								<?php endif; ?>
+							</span>
+			       		</li>
+		        <?php
+		        	} 
+		        ?>
+			</ul>
+      	</div>
+      	<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
