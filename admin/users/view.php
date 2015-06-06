@@ -71,7 +71,10 @@
 	if( isset($_GET['action']) && $_GET["action"] == 'delete' ){
 		$query_delete = "DELETE FROM users WHERE PK_iUserId = ".$_GET['u'];
 		if (mysqli_query($con, $query_delete)) {
-			redirect('index.php');
+			$query_delete = "DELETE FROM ketqua WHERE userid=".$_GET['u'];
+			if (mysqli_query($con, $query_delete)) {
+				redirect('index.php');
+			}
 		}else{
 			echo '<span class="label label-danger">Lỗi khi xóa</span>';
 		}
