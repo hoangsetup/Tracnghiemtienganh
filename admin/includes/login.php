@@ -27,7 +27,7 @@
 			$_SESSION['login'] = "true";
 			$row = mysqli_fetch_array($result);
 			$_SESSION["user_id"] = $row["PK_iUserId"];
-			$_SESSION["user_name"] = $row["sUser"];
+			$_SESSION["user_name"] = $row["sName"];
 			$_SESSION["user_role"] = $row["iPermission"];
 			redirect('index.php?login=true&page=questions');
 		}

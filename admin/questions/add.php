@@ -1,3 +1,9 @@
+<?php
+/**
+* Display form of adding new question record
+* Function adding
+*/
+?>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#addnewQuestion" aria-expanded="false" aria-controls="addnewQuestion">Thêm</button>
 <br><br>
 <div class="collapse" id="addnewQuestion">
@@ -7,8 +13,8 @@
 				<div class="col-xs-12 col-sm-6">
 					<legend>Nội dung câu hỏi</legend>
 					<div class="form-group">
-						<select name="cate" id="" class="form-control">
-							<option value="0">Thể loại</option>
+						<select name="cate" id="" class="form-control" required>
+							<option value="" disabled selected>Thể loại</option>
 							<option value="1">Từ vựng</option>
 							<option value="2">Ngữ pháp</option>
 							<option value="3">Phát âm</option>
@@ -25,7 +31,7 @@
 					<br>
 					<div class="input-group">
 				      	<span class="input-group-addon">
-				        	<input name="da" type="radio" value="1" aria-label="...">
+				        	<input name="da" type="radio" required value="1" aria-label="...">
 				      	</span>
 				      	<input required="required" name="a" type="text" placeholder="Đáp án A" class="form-control" aria-label="...">
 				    </div><!-- /A -->
@@ -55,6 +61,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<button type="submit" name="submit-add-question" class="btn btn-success">Thêm</button>
+					<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#addnewQuestion" aria-expanded="false" aria-controls="addnewQuestion">Hủy</button>
 				</div>
 			</div>
 			<!-- /Submit -->
@@ -101,7 +108,7 @@
 		    mysqli_query($con, $query_b);
 		    mysqli_query($con, $query_c);
 		    mysqli_query($con, $query_d);
-		    echo '<span class="label label-success">Đã thêm 1 câu hỏi.</span>';
+		    echo '<a class="label label-success" href="index.php?page=questions">Đã thêm 1 câu hỏi.</a>';
 		    unset($_POST["submit-add-question"]);
 		} else {
 		    echo '<span class="label label-danger">Lỗi, không thêm được câu hỏi.</span>';
