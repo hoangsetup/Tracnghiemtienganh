@@ -10,15 +10,24 @@
 	}
 
 	if(isset($_SERVER["Authorization"]) && $_SERVER["Authorization"] == '2d30ff242f8650954bfe8c993f084f4f'  || $checkApi){
-		if(isset($_POST['thoigian']) && isset($_POST['ketqua']) && isset($_POST['userid'])){
-			$thoigian = $_POST['thoigian'];
-			$ketqua = $_POST['ketqua'];
+		if(isset($_POST['userid'])){
 			$userid = $_POST['userid'];
-			$query = sprintf("INSERT INTO ketqua(thoigian, ketqua, userid) VALUES('%s', '%s', '%s')", $thoigian, $ketqua, $userid);
+			$query = sprintf("SELECT * FROM ketqua WHERE userid = '%s'", $userid);
 			$result = queryToTable($query);
-			if($result){
+			if(mysqli_num_rows($result) > 0){
 				$success = 1;
 				$message = "Success!";
+				$response['ketqua'] = array();
+				while ($row = mysqli_fetch_array($result)) {
+					$ketqua = array(
+						'thoigian' => $row['thoigian'],
+						'ketqua' => $row['ketqua']
+					);
+					array_push($response['ketqua'], $ketqua);
+				}
+			}else{
+				$success = 0;
+				$message = 'Data is null!';
 			}
 
 		}else{
