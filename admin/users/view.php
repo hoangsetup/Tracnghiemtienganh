@@ -25,9 +25,7 @@
 	</td>
 	<td class="col-action">
 		<?php
-			if( $row['iPermission'] == 2 ){//Learner
-				echo '<a class="label label-info" href="#" data-toggle="modal" data-target="#myModal-'.$row["PK_iUserId"].'">Kết quả thi</a>';
-			} 
+			echo '<a class="label label-info" href="#" data-toggle="modal" data-target="#myModal-'.$row["PK_iUserId"].'">Kết quả thi</a>';
 		?>
 		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Xem chi tiết/Sửa</a>
 		<a onclick="return confirm('Bạn có chắc chắn xóa?')" href="?action=delete&u=<?php echo $row["PK_iUserId"] ?>" class="label label-danger">Xóa</a>
