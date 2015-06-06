@@ -24,15 +24,15 @@
 	?>
 	</td>
 	<td class="col-action">
+		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Xem chi tiết/Sửa</a>
 		<?php
 			echo '<a class="label label-info" href="#" data-toggle="modal" data-target="#myModal-'.$row["PK_iUserId"].'">Kết quả thi</a>';
 		?>
-		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["PK_iUserId"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["PK_iUserId"]; ?>">Xem chi tiết/Sửa</a>
 		<a onclick="return confirm('Bạn có chắc chắn xóa?')" href="?action=delete&u=<?php echo $row["PK_iUserId"] ?>" class="label label-danger">Xóa</a>
 	</td>
 </tr>
 <tr class="collapse out" id="editQuestion-<?php echo $row["PK_iUserId"]; ?>">
-	<form action="" method="POST" role="form">		
+	<form action="" method="POST" role="form" enctype="multipart/form-data">		
 		<td colspan="4">
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
@@ -51,11 +51,22 @@
 					<br>
 				</div>
 				<div class="col-sm-6 col-xs-12">
-					<label for="sdob">Ngày sinh</label><input type="text" name="sdob" value="<?php echo $row["sNgaysinh"]; ?>" placeholder="Ngày sinh" class="form-control">
+					<label for="sdob">Ngày sinh</label><input type="text" name="sdob" value="<?php echo $row["sNgaysinh"]; ?>" placeholder="Ngày sinh" class="form-control" required>
 					<br>
-					<label for="smail">Email</label><input type="text" name="sdob" value="<?php echo $row["sEmail"]; ?>" placeholder="Email" class="form-control">
+					<label for="smail">Email</label><input type="text" name="smail" value="<?php echo $row["sEmail"]; ?>" placeholder="Email" class="form-control" required>
 					<br>
-					<label for="sphone">Số điện thoại</label><input type="text" name="sphone" value="<?php echo $row["sSdt"]; ?>" placeholder="Email" class="form-control">
+					<label for="sphone">Số điện thoại</label><input type="text" name="sphone" value="<?php echo $row["sSdt"]; ?>" placeholder="Email" class="form-control" required>
+					<br>
+					<div class="row">
+						<div class="col-sm-3 col-xs-12">
+							<input type="text" class="sr-only" name="simage_old" value="<?php echo $row["image"]; ?>">
+							<img style="max-width: 80px;" src="../images/<?php echo $row["image"]; ?>" class="img-responsive" alt="thumb">
+						</div>
+						<div class="col-sm-9 col-xs-12">
+							<label for="simage">Ảnh đại diênh</label>
+							<input type="file" class="form-control" name="simage">
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
