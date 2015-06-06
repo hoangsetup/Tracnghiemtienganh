@@ -4,15 +4,15 @@
 	 * Connect to the database
 	 */
 	global $con;
-	// $dbHost = 'localhost';
-	// $dbUSer = 'root';
-	// $dbPass = 'root';
-	// $dbName = 'tracnghiemtienganh';
+	$dbHost = 'localhost';
+	$dbUSer = 'root';
+	$dbPass = 'root';
+	$dbName = 'tracnghiemtienganh';
 
-	$dbHost = 'mysql.hostinger.vn';
-	$dbPass = '123456';
-	$dbUSer = 'u226375234_phuc';
-	$dbName = 'u226375234_tnta';
+	// $dbHost = 'mysql.hostinger.vn';
+	// $dbPass = '123456';
+	// $dbUSer = 'u226375234_phuc';
+	// $dbName = 'u226375234_tnta';
 
 	// Create connection
 	$con = mysqli_connect( $dbHost, $dbUSer, $dbPass,$dbName );

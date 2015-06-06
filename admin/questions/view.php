@@ -9,20 +9,23 @@
 	<td>
 	<?php 
 		//Question's category
-		switch ($row["loaicauhoi"]) {
-			case '1':
-				echo '<span class="label label-default">Từ vựng</span> ';
-				break;
-			case '2':
-				echo '<span class="label label-info">Ngữ pháp</span> ';
-				break;
-			case '3':
-				echo '<span class="label label-warning">Phát âm</span> ';
-				break;
-			default:
-				# code...
-				break;
-		}
+		$rs = queryToTable("SELECT * FROM loaicauhoi WHERE id = '".$row['loaicauhoi']."'");
+		$tenloai = mysqli_fetch_array($rs)['tenloai'];
+		echo '<span class="label label-default">'.$tenloai.'</span> ';
+		// switch ($row["loaicauhoi"]) {
+		// 	case '1':
+		// 		echo '<span class="label label-default">Từ vựng</span> ';
+		// 		break;
+		// 	case '2':
+		// 		echo '<span class="label label-info">Ngữ pháp</span> ';
+		// 		break;
+		// 	case '3':
+		// 		echo '<span class="label label-warning">Phát âm</span> ';
+		// 		break;
+		// 	default:
+		// 		# code...
+		// 		break;
+		// }
 		//Question's content
 		echo substr($row["noidung"], 0, 250);
 	?>

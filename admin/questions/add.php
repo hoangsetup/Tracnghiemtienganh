@@ -15,9 +15,15 @@
 					<div class="form-group">
 						<select name="cate" id="" class="form-control" required>
 							<option value="" disabled selected>Thể loại</option>
-							<option value="1">Từ vựng</option>
-							<option value="2">Ngữ pháp</option>
-							<option value="3">Phát âm</option>
+							<?php 
+								$result = queryToTable("SELECT * FROM loaicauhoi");
+								while ($row = mysqli_fetch_array($result)) {
+								
+							 ?>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['tenloai'] ; ?></option>
+							<?php 
+								}
+							 ?>
 						</select>
 					</div>
 					<div class="form-group">
