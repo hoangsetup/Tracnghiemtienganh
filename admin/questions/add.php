@@ -1,3 +1,9 @@
+<?php
+/**
+* Display form of adding new question record
+* Function adding
+*/
+?>
 <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#addnewQuestion" aria-expanded="false" aria-controls="addnewQuestion">Thêm</button>
 <br><br>
 <div class="collapse" id="addnewQuestion">
@@ -101,7 +107,7 @@
 		    mysqli_query($con, $query_b);
 		    mysqli_query($con, $query_c);
 		    mysqli_query($con, $query_d);
-		    echo '<span class="label label-success">Đã thêm 1 câu hỏi.</span>';
+		    echo '<span class="label label-success"><a href="index.php?page=questions">Đã thêm 1 câu hỏi.</a></span>';
 		    unset($_POST["submit-add-question"]);
 		} else {
 		    echo '<span class="label label-danger">Lỗi, không thêm được câu hỏi.</span>';
