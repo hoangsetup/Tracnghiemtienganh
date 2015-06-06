@@ -6,8 +6,28 @@
 	global $row; 
 ?>
 <tr>
-	<td><?php echo substr($row["noidung"], 0, 100); ?></td>
 	<td>
+	<?php 
+		//Question's category
+		switch ($row["loaicauhoi"]) {
+			case '1':
+				echo '<span class="label label-default">Từ vựng</span> ';
+				break;
+			case '2':
+				echo '<span class="label label-info">Ngữ pháp</span> ';
+				break;
+			case '3':
+				echo '<span class="label label-warning">Phát âm</span> ';
+				break;
+			default:
+				# code...
+				break;
+		}
+		//Question's content
+		echo substr($row["noidung"], 0, 250);
+	?>
+	</td>
+	<td class="col-action">
 		<a class="label label-primary" data-toggle="collapse" data-target="#editQuestion-<?php echo $row["id"]; ?>" aria-expanded="false" aria-controls="editQuestion-<?php echo $row["id"]; ?>">Sửa</a>
 		<a onclick="return confirm('Bạn có chắc chắn xóa?')" href="?action=delete&q=<?php echo $row["id"] ?>" class="label label-danger">Xóa</a>
 	</td>
@@ -58,7 +78,7 @@
 				</div>
 			</div>
 		</td>
-		<td>
+		<td class="col-action">
 			<div class="row">
 				<div class="col-sm-12">
 					<button type="submit" name="submit-edit-question" value="<?php echo $row["id"]; ?>" class="btn btn-success">Xong</button>

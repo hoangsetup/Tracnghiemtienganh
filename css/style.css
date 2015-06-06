@@ -1,0 +1,10 @@
+/* QUESSTIONS */
+table.questions th.head-action,
+table.questions .col-action {
+  max-width: 30%;
+  text-align: right;
+}
+
+.head-user-meta {
+  text-align: right;
+}

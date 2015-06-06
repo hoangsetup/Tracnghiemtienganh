@@ -1,26 +1,28 @@
 <?php
 	/**
-	*Display Table of question records
+	*Display Table of user records
 	*/
-	$query = "SELECT * FROM cauhoi WHERE userid ='".$_SESSION["user_id"]."' ORDER BY id DESC";
+	$query = "SELECT * FROM users";
 	$result = mysqli_query( $con,$query ); 
 ?>
 <div class="panel panel-primary">
 	  <div class="panel-heading">
-			<h3 class="panel-title">Danh sách câu hỏi</h3>
+			<h3 class="panel-title">Danh sách thành viên</h3>
 	  </div>
 	  <div class="panel-body">
 		  	<?php 
 		  		/**
-		  		* Display form of adding new question record
+		  		* Display form of adding new user record
 		  		* Function adding
 		  		*/
-		  		include('questions/add.php'); 
+		  		include('users/add.php'); 
 		  	?>
-		  	<table class="table table-hover questions">
+		  	<table class="table table-hover users">
 		  		<thead>
 		  			<tr>
-		  				<th class="head-content">Nội dung</th>
+		  				<th class="head-content">Tên đăng nhập</th>
+		  				<th class="head-content">Tên hiển thị</th>
+		  				<th class="head-privillage">Quyền</th>
 		  				<th class="head-action">Hành động</th>
 		  			</tr>
 		  		</thead>
@@ -28,10 +30,10 @@
 		  		<?php 
 		  			while( $row=mysqli_fetch_array($result) ){
 		  				/**
-		  				* Display each row of question record
+		  				* Display each row of user record
 		  				* Function editting and deleting
 		  				*/
-		  				include('questions/view.php');
+		  				include('users/view.php');
 		  			} 
 		  		?>
 		  		</tbody>

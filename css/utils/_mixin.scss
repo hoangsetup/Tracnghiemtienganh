@@ -1,0 +1,170 @@
+// BREAK POINT
+// ------------------------------------------------//
+@mixin bp($point) {
+	@if $point == xs_max {
+		@media (max-width: 480px) { @content; }
+	}
+	@else if $point == xs_min {
+		@media (min-width: 480px) { @content; }
+	}
+	@else if $point == sm_max {
+		@media (max-width: 767px) { @content; }
+	}
+	@else if $point == sm_min {
+		@media (min-width: 768px) { @content; }
+	}
+	@else if $point == md_max {
+		@media (max-width: 991px) { @content; }
+	}
+	@else if $point == md_min {
+		@media (min-width: 992px) { @content; }
+	}
+	@elseif $point == lg_max {
+		@media (max-width: 1199px) { @content; }
+	}
+	@else if $point == lg_min {
+		@media (min-width: 1200px) { @content; }
+	}
+	@else if $point == xs_min_sm_max {
+		@media (min-width: 480px) and (max-width: 767px) { @content; }
+	}
+	@else if $point == sm_min_md_max {
+		@media (min-width: 768px) and (max-width: 991px) { @content; }
+	}
+	@else if $point == md_min_lg_max {
+		@media (min-width: 992px) and (max-width: 1199px) { @content; }
+	}
+}
+// MARGIN_PADDING
+// ------------------------------------------------//
+@mixin margin-tb($arg) {
+	margin-top: $arg;
+	margin-bottom: $arg;
+}
+@mixin margin-t-b($arg1, $arg2) {
+	margin-top: $arg1;
+	margin-bottom: $arg2;
+}
+@mixin padding-tb($arg) {
+	padding-top: $arg;
+	padding-bottom: $arg;
+}
+@mixin padding-t-b($arg1, $arg2) {
+	padding-top: $arg1;
+	padding-bottom: $arg2;
+}
+// TRANSITION_TRANSFORM
+// ------------------------------------------------//
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-o-transition: $args;
+	-ms-transition: $args;
+	transition: $args;
+}
+@mixin transition-property($arg) {
+	-webkit-transition-property: $arg;
+	-moz-transition-property: $arg;
+	-ms-transition-property: $arg;
+	-o-transition-property: $arg;
+	transition-property: $arg;
+}
+@mixin transform($arg) {
+	-webkit-transform: $arg;
+	-moz-transform: $arg;
+	-o-transform: $arg;
+	-ms-transform: $arg;
+}
+// CROSS BROWSER OPACITY
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+// BORDER RADIUS
+@mixin border-radius($arg...) {
+	-webkit-border-radius: $arg;
+	-moz-border-radius: $arg;
+	border-radius: $arg;
+}
+// ANIMATION
+@mixin ht-animation($time,$name) {
+	-webkit-animation-duration: $time;
+	animation-duration: $time;
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+	-webkit-animation-name: $name;
+	animation-name: $name;
+}
+// KEYFRAME
+// @include keyframes(slide-down) {
+//	0% { opacity: 1; }
+//	90% { opacity: 0; }
+// }
+@mixin keyframes($animation-name) {
+	@-webkit-keyframes $animation-name {
+		@content;
+	}
+	@-moz-keyframes $animation-name {
+		@content;
+	}  
+	@-ms-keyframes $animation-name {
+		@content;
+	}
+	@-o-keyframes $animation-name {
+		@content;
+	}  
+	@keyframes $animation-name {
+		@content;
+	}
+}
+@mixin animation($str) {
+	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-ms-animation: #{$str};
+	-o-animation: #{$str};
+	animation: #{$str};      
+}
+@mixin font-size($arg) {
+	font-size: $arg+px;
+	font-size: $arg/10+rem;
+}
+// EXTENDABLE MIXIN
+// ------------------------------------------------//
+%clearfix {
+	*zoom: 1;
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+%visuallyhidden {
+	margin: -1px;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
+	position: absolute;
+}
+%circle {
+	@include border-radius(50%);
+}
+%hardware-acc {
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+}
+%absolute-fill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
