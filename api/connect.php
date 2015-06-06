@@ -8,6 +8,12 @@
 	$dbUSer = 'root';
 	$dbPass = 'root';
 	$dbName = 'tracnghiemtienganh';
+
+	//$dbHost = ' mysql.hostinger.vn';
+	//$dbPass = '123456';
+	//$dbUSer = ' u226375234_phuc ';
+	//$dbName = 'u226375234_tnta';
+
 	// Create connection
 	$con = mysqli_connect( $dbHost, $dbUSer, $dbPass,$dbName );
 	mysqli_query( $con,"SET NAMES 'utf8'" );
